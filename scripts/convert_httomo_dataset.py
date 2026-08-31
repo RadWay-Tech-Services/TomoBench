@@ -34,30 +34,36 @@ def main(args):
             for key in entry_group["tomo_entry"]:
                 if not key in entry_group:
                     entry_group[key] = entry_group["tomo_entry"][key]
-            if not "detector" in entry_group["instrument"]:
-                entry_group["instrument"]["detector"] = entry_group["tomo_entry"][
-                    "instrument"
-                ]["detector"]
-        detector_group = entry_group["instrument"]["detector"]
-        del detector_group["distance"]
-        detector_group["distance"] = 0.01
-        detector_group["distance"].attrs["units"] = "m"
-        del detector_group["x_pixel_size"]
-        detector_group["x_pixel_size"] = 0.000006
-        detector_group["x_pixel_size"].attrs["units"] = "m"
-        del detector_group["y_pixel_size"]
-        detector_group["y_pixel_size"] = 0.000006
-        detector_group["y_pixel_size"].attrs["units"] = "m"
-        if not "image_key_control" in detector_group:
-            detector_group["image_key_control"] = detector_group["image_key"]
+            instrument_group = entry_group["instrument"]
+            if not "detector" in instrument_group:
+                instrument_group["detector"] = entry_group["tomo_entry"]["instrument"][
+                    "detector"
+                ]
+            detector_group = instrument_group["detector"]
+            del detector_group["distance"]
+            detector_group["distance"] = 0.01
+            detector_group["distance"].attrs["units"] = "m"
+            del detector_group["x_pixel_size"]
+            detector_group["x_pixel_size"] = 0.000006
+            detector_group["x_pixel_size"].attrs["units"] = "m"
+            del detector_group["y_pixel_size"]
+            detector_group["y_pixel_size"] = 0.000006
+            detector_group["y_pixel_size"].attrs["units"] = "m"
+            if not "image_key_control" in detector_group:
+                detector_group["image_key_control"] = detector_group["image_key"]
 
-        sample_group = entry_group["sample"]
-        if "x_translation" in sample_group:
-            del sample_group["x_translation"]
-        if "y_translation" in sample_group:
-            del sample_group["y_translation"]
-        if "z_translation" in sample_group:
-            del sample_group["z_translation"]
+            sample_group = entry_group["sample"]
+            if "x_translation" in sample_group:
+                del sample_group["x_translation"]
+            if "y_translation" in sample_group:
+                del sample_group["y_translation"]
+            if "z_translation" in sample_group:
+                del sample_group["z_translation"]
+
+            if not "beam" in instrument_group:
+                beam_group = instrument_group.create_group("beam")
+                beam_group["incident_energy"] = 19.0
+                beam_group["incident_energy"].attrs["units"] = "keV"
 
 
 if __name__ == "__main__":

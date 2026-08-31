@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --account=pk_tmobench
+#SBATCH --job-name=run-nabu-fbp-sandstone
+#SBATCH --partition=gpu
+#SBATCH --time=00:10:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=64
+#SBATCH --mem-per-cpu=4000
+#SBATCH --gres=gpu:4
+#SBATCH --output=run-nabu-fbp-sandstone.log
+
+module load singularity
+export TMPDIR=/tmp
+singularity exec --nv -B /opt/cray:/opt/cray -B /project/pk_tmobench/tomography-benchmarks:/tomography-benchmarks -B /scratch/pk_tmobench:/scratch/pk_tmobench tomobenchmarks.sif bash -c '. /miniconda3/bin/activate && cd /tomography-benchmarks && for i in {0..1}; do just run-nabu pipelines/nabu/fbp.conf /scratch/pk_tmobench/119647.nx 4 /scratch/pk_tmobench/nabu-out; done'

@@ -103,3 +103,6 @@ sbatch-all:
     sbatch batch/run-httomo-lprec.sbatch
     sbatch batch/run-nabu-fbp.sbatch
     sbatch batch/run-nabu-fbp-preproc.sbatch
+
+preprocess-dataset input-file:
+    conda run --no-capture-output --name {{env-name}} -- python scripts/convert_httomo_dataset.py --hdf-file {{input-file}}

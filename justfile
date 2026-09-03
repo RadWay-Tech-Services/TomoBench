@@ -106,3 +106,6 @@ sbatch-all:
 
 preprocess-dataset input-file:
     conda run --no-capture-output --name {{env-name}} -- python scripts/convert_httomo_dataset.py --hdf-file {{input-file}}
+
+measure-bandwidth:
+    conda run --no-capture-output --name {{env-name}} -- python scripts/measure_bandwidth.py

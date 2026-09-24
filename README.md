@@ -1,6 +1,29 @@
-# Tomography benchmark suite
-
-Comparing the performance of Filtered BackProjection (FBP) and Log-Polar Reconstruction (LPRec) tomography pipelines using the [httomo](https://diamondlightsource.github.io/httomo/index.html), [Nabu](https://www.silx.org/pub/nabu/doc/index.html) and [TomoCuPy](https://tomocupy.readthedocs.io/en/latest/) tomography suites.
+<div align="center">
+  <img src="docs/images/tomobench-infographic.png" width="800px" alt="TomoBench: benchmarking tomographic reconstruction">
+  <h3 align="center">
+    Tomography benchmark suite
+  </h3>
+  <p align="center">
+    Comparing Filtered BackProjection (FBP) and Log-Polar Reconstruction (LPRec) pipelines
+  </p>
+  <p align="center">
+    <a href="https://diamondlightsource.github.io/httomo/index.html">
+      <b>httomo</b>
+    </a>
+    <span> • </span>
+    <a href="https://www.silx.org/pub/nabu/doc/index.html">
+      <b>Nabu</b>
+    </a>
+    <span> • </span>
+    <a href="https://tomocupy.readthedocs.io/en/latest/">
+      <b>TomoCuPy</b>
+    </a>
+    <span> • </span>
+    <a href="#usage">
+      <b>Usage</b>
+    </a>
+  </p>
+</div>
 
 ## Repository structure
 
